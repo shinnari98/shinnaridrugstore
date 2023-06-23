@@ -1,3 +1,49 @@
+## Shinnari Drugstore
+PHP自作
+
+## 概要
+<p>医薬品などを販売するウェブサイトを作成しました。</p>
+<p>管理者、サプライヤー、ユーザーに分け、 それぞれでログインできるようにしています。</p>
+
+## 使い方
+<p>※管理者</p>
+<p>ユーザー、商品、注文履歴の情報が見れると変更できるようにしています。</p>
+<p>ユーザー、商品の新作できるできるようにしています。</p>
+<p>問い合わせが見れるとフィードバックできるようにしています。</p>
+
+<p>テストアカウント：</p>
+<p>メールアドレス→ admin@gmail.com.jp</p>
+<p>パスワード→ 1651998</p>
+
+<p>※サプライヤー</p>
+<p>問い合わせできるようにしています。</p>
+<p>アカウントの情報が見れると変更できるようにしています。</p>
+<p>ユーザーからの注文が見れる、編集とキャンセルできるようにしています。</p>
+<p>商品が見れる、新作と編集と削除できるようにしています。</p>
+
+<p>テストアカウント：</p>
+<p>メールアドレス→ amazon@co.jp</p>
+<p>パスワード→ 1651998</p>
+
+※ユーザー<p></p>
+<p>問い合わせできるようにしています。</p>
+<p>アカウントの情報が見れると変更できるようにしています。</p>
+<p>商品の操作ができるようにしています。(いいね、カートに入れ)</p>
+<p>注文ができる。</p>
+<p>注文後、商品が評価と注文が変更とキャンセルできるようにしています。</p>
+
+<p>テストアカウント：</p>
+<p>メールアドレス→ user_mail@co.jp</p>
+<p>パスワード→ 1651998</p>
+
+## 環境
+<p>XAMPP/MySQL/PHP</p>
+
+## データベース
+<p>DB_DATABASE=drugstore</p>
+<p>DB_USERNAME=root</p>
+<p>DB_PASSWORD=root</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -6,52 +52,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
-## Shinnari Drugstore
-PHP自作
-
-## 概要
-医薬品などを販売するウェブサイトを作成しました。
-管理者、サプライヤー、ユーザーに分け、 それぞれでログインできるようにしています。
-
-## 使い方
-※管理者
-ユーザー、商品、注文履歴の情報が見れると変更できるようにしています。
-ユーザー、商品の新作できるできるようにしています。
-問い合わせが見れるとフィードバックできるようにしています。
-
-テストアカウント：
-メールアドレス→ admin@gmail.com.jp
-パスワード→ 1651998
-
-※サプライヤー
-問い合わせできるようにしています。
-アカウントの情報が見れると変更できるようにしています。
-ユーザーからの注文が見れる、編集とキャンセルできるようにしています。
-商品が見れる、新作と編集と削除できるようにしています。
-
-テストアカウント：
-メールアドレス→ amazon@co.jp
-パスワード→ 1651998
-
-※ユーザー
-問い合わせできるようにしています。
-アカウントの情報が見れると変更できるようにしています。
-商品の操作ができるようにしています。(いいね、カートに入れ、)
-注文ができる。
-注文後、商品が評価と注文が変更とキャンセルできるようにしています。
-
-テストアカウント：
-メールアドレス→ user_mail@co.jp
-パスワード→ 1651998
-
-## 環境
-XAMPP/MySQL/PHP
-
-## データベース
-DB_DATABASE=drugstore
-DB_USERNAME=root
-DB_PASSWORD=root
-
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
