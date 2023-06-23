@@ -6,6 +6,51 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## Shinnari Drugstore
+PHP自作
+
+## 概要
+医薬品などを販売するウェブサイトを作成しました。
+管理者、サプライヤー、ユーザーに分け、 それぞれでログインできるようにしています。
+
+## 使い方
+※管理者
+ユーザー、商品、注文履歴の情報が見れると変更できるようにしています。
+ユーザー、商品の新作できるできるようにしています。
+問い合わせが見れるとフィードバックできるようにしています。
+
+テストアカウント：
+メールアドレス→ admin@gmail.com.jp
+パスワード→ 1651998
+
+※サプライヤー
+問い合わせできるようにしています。
+アカウントの情報が見れると変更できるようにしています。
+ユーザーからの注文が見れる、編集とキャンセルできるようにしています。
+商品が見れる、新作と編集と削除できるようにしています。
+
+テストアカウント：
+メールアドレス→ amazon@co.jp
+パスワード→ 1651998
+
+※ユーザー
+問い合わせできるようにしています。
+アカウントの情報が見れると変更できるようにしています。
+商品の操作ができるようにしています。(いいね、カートに入れ、)
+注文ができる。
+注文後、商品が評価と注文が変更とキャンセルできるようにしています。
+
+テストアカウント：
+メールアドレス→ user_mail@co.jp
+パスワード→ 1651998
+
+## 環境
+XAMPP/MySQL/PHP
+
+## データベース
+DB_DATABASE=drugstore
+DB_USERNAME=root
+DB_PASSWORD=root
 
 ## About Laravel
 
