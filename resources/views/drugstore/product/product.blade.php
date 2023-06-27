@@ -1,5 +1,5 @@
 @php
-if (session()->has('user') && $likes != null) {
+if (Auth::user() && $likes != null) {
     if (count($likes) > 0) {
         foreach ($likes as $like) {
             $like_db[] = $like->product_id;
@@ -79,14 +79,14 @@ if (session()->has('user') && $likes != null) {
             <div class="product-item__action">
                 <span class="product-item__like {{-- product-item__like--liked --}}">
                     @php
-                    if (session()->has('user') ) {
+                    if (Auth::user() ) {
                     $liked = in_array($product->id, $like_db);
                     }
                     $likes = session()->get('likes');
                     $productLiked = isset($likes[$product->id]) && $likes[$product->id] === true;
                     @endphp
 
-                    @if (session()->has('user'))
+                    @if (Auth::user())
                     @if ($productLiked || $liked)
                     <i class="product-item__like-icon-empty fa-regular fa-heart"
                         style="display:none;"></i>
