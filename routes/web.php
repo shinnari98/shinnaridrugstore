@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkAdmin'], function () {
     Route::post('/contact/feedback/send',[ContactController::class,'Sendfeedback'])->name('admin.sendFeedback');
 });
 
-Route::group(['prefix' => '/payment', 'middleware' => ['isUser','home.redirect']], function () {
+Route::group(['prefix' => '/payment', 'middleware' => ['checkUser','home.redirect']], function () {
     Route::get('/',[OrderController::class,'payment'])->name('payment');
     Route::post('/confirm',[OrderController::class,'orderSend'])->name('payment.send');
     Route::post('/complete',[OrderController::class,'orderComplete'])->name('payment.complete');
