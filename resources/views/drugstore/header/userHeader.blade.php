@@ -175,3 +175,4 @@
         </div>
     </div>
 </header>
+@include('drugstore.item.ajaxJS')

@@ -226,10 +226,6 @@ header {
     font-size: 1.8rem;
 }
 
-a:hover {
-    /* color: white !important; */
-}
-
 .nav-search__btn:hover,
 .nav-contact a:hover,
 .nav-cart i:hover,

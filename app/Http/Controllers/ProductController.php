@@ -158,9 +158,9 @@ class ProductController extends Controller
         }
     }
 
-    public function like(Request $request, $id)
+    public function like(Request $request)
     {
-        $product_id = $id;
+        $product_id = $request->input('id');
         $is_like = $request->input('isLike') === 'true';
         $user = Auth::user();
 
@@ -202,10 +202,10 @@ class ProductController extends Controller
         return null;
     }
 
-    public function addStar(Request $request, $id)
+    public function addStar(Request $request)
     {
         $user = Auth::user();
-        $product_id = $id;
+        $product_id = $request->input('id');
         $star_number = $request->star;
         // dd($star, $id);
         if ($user) {
@@ -232,8 +232,10 @@ class ProductController extends Controller
         return null;
     }
 
-    public function addCart(Request $request, $id)
+    public function addCart(Request $request)
     {
+        // dd($request); 
+        $id = $request->input('id');
         $product = Products::find($id);
         $quantity = $request->input('quantity');
 
@@ -248,8 +250,9 @@ class ProductController extends Controller
         return view('drugstore.item.cart'/* ,compact('newCart','quantity') */);
     }
 
-    public function deleteCart(Request $request, $id)
+    public function deleteCart(Request $request)
     {
+        $id = $request->input('id');
         $quantity = $request->input('quantity');
 
         $oldCart = Session('cart') ? Session('cart') : null;

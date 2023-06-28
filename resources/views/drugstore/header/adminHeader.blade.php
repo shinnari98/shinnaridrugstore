@@ -106,7 +106,7 @@
         </div>
     </div>
 </header>
-
+@include('drugstore.item.ajaxJS')
 <script>
     function updateNavGroupStyle() {
         if ($(window).width() <= 992) {
