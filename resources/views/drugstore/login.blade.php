@@ -2,15 +2,6 @@
 
 @section('title', 'ログイン')
 
-@section('CSS')
-<style>
-    header {
-        position: fixed;
-        width: 100%;
-    }
-</style>
-@endsection
-
 @section('header')
 @include('drugstore.header.header')
 @endsection

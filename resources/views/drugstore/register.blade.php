@@ -4,11 +4,6 @@
 
 @section('CSS')
 <style>
-    header {
-        position: fixed;
-        width: 100%;
-    }
-
     .box-title__register {
         color: #d70466;
         font-size: 28px;
