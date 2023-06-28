@@ -15,9 +15,21 @@ class HomeRedirect
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $response = $next($request);
+        // dd($response->getStatusCode());
         if (empty($_SERVER['HTTP_REFERER']) || $request->session()->has('status')) {
             return redirect()->route('homepage');
         }
+        if (empty($_SERVER['HTTP_REFERER']) || $request->session()->has('status_payment')) {
+            return redirect()->route('homepage');
+        }
+
+        if (empty($_SERVER['HTTP_REFERER']) || $request->session()->has('status_orderFail')) {
+            return redirect()->route('homepage');
+        }
+        // if(!$request->hasHeader('referer') || empty($request->header('referer'))) {
+        //     return redirect()->route('homepage');
+        // }
         return $next($request);
     }
 }

@@ -109,6 +109,10 @@ class LoginController extends Controller
         $request->session()->forget('cart');
         $request->session()->forget('card');
         $request->session()->forget('likes');
+        $request->session()->forget('status');
+        $request->session()->forget('status_payment');
+        $request->session()->forget('status_orderFail');
+
         Auth::logout();
         return redirect()->route('index');
     }

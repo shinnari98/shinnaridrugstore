@@ -74,7 +74,6 @@ class ProductController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $request->session()->forget('status');
         $product = Products::find($id);
         $user = Auth::user();
         $like = Likes::where('user_id', $user->id)->where('product_id', $id)->first();
@@ -147,7 +146,6 @@ class ProductController extends Controller
      */
     public function destroy(Request $request,string $id)
     {
-        $request->session()->put('status', true);
         $product = Products::find($id);
         $text = 'Product id ' . $id . ' deleted successfully';
         $product->delete();
@@ -269,7 +267,6 @@ class ProductController extends Controller
     /* producer */
     public function showMyProduct(Request $request)
     {
-        $request->session()->forget('status');
         $products = Products::where('producer_id',Auth::user()->id)->paginate(16);
         return view('drugstore.admin.product.allProduct', compact('products'));
     }

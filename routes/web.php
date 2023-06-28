@@ -43,7 +43,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'contact'], function () {
     Route::get('/', [ContactController::class, 'contact'])->name('contact.userIndex');
     Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-    Route::post('/complete', [ContactController::class, 'complete'])->name('contact.complete')->middleware('home.redirect');
+    Route::post('/complete', [ContactController::class, 'complete'])->name('contact.complete');
 });
 
 Route::group(['prefix' => '/product'], function () {
@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkAdmin'], function () {
     Route::post('/contact/feedback/send', [ContactController::class, 'Sendfeedback'])->name('admin.sendFeedback');
 });
 
-Route::group(['prefix' => '/payment', 'middleware' => ['checkUser', 'home.redirect']], function () {
+Route::group(['prefix' => '/payment', 'middleware' => 'checkUser'], function () {
     Route::get('/', [OrderController::class, 'payment'])->name('payment');
     Route::post('/confirm', [OrderController::class, 'orderSend'])->name('payment.send');
     Route::post('/complete', [OrderController::class, 'orderComplete'])->name('payment.complete');
@@ -82,8 +82,8 @@ Route::group(['prefix' => '/user', 'middleware' => 'auth'], function () {
     Route::get('/order-history/edit/{id}', [OrderController::class, 'editMyOrder'])->name('order.userEdit');
     Route::put('/order-history/update', [OrderController::class, 'updateMyOrder'])->name('order.userUpadate');
 
-    Route::get('/order/{id}/cancel', [OrderController::class, 'reason'])->name('user.order.cancel')->middleware('home.redirect');;
-    Route::post('/order/fail', [OrderController::class, 'orderFailCreat'])->name('user.orderFail')->middleware('home.redirect');;
+    Route::get('/order/{id}/cancel', [OrderController::class, 'reason'])->name('user.order.cancel');
+    Route::post('/order/fail', [OrderController::class, 'orderFailCreat'])->name('user.orderFail');
 });
 
 Route::group(['prefix' => '/producer', 'middleware' => 'checkProducer'], function () {
@@ -95,8 +95,8 @@ Route::group(['prefix' => '/producer', 'middleware' => 'checkProducer'], functio
     Route::get('/order/{id}', [OrderController::class, 'show'])->name('producer.orderShow');
     Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('producer.orderEdit');
     Route::put('/order/{id}/', [OrderController::class, 'update'])->name('producer.orderUpdate');
-    Route::get('/order/{id}/cancel', [OrderController::class, 'reason'])->name('producer.order.cancel')->middleware('home.redirect');;
-    Route::post('/order/fail', [OrderController::class, 'orderFailCreat'])->name('producer.orderFail')->middleware('home.redirect');;
+    Route::get('/order/{id}/cancel', [OrderController::class, 'reason'])->name('producer.order.cancel');
+    Route::post('/order/fail', [OrderController::class, 'orderFailCreat'])->name('producer.orderFail');
 
     Route::get('/product', [ProductController::class, 'showMyProduct'])->name('producer.showProduct');
     Route::get('/product/create', [ProductController::class, 'create'])->name('producer.productCreate');
@@ -104,5 +104,5 @@ Route::group(['prefix' => '/producer', 'middleware' => 'checkProducer'], functio
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('producer.productShow');
     Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('producer.productEdit');
     Route::put('product/{id}', [ProductController::class, 'update'])->name('producer.productUpdate');
-    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('producer.productDestroy')->middleware('home.redirect');;
+    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('producer.productDestroy');
 });

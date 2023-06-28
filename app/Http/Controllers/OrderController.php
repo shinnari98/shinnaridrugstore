@@ -19,7 +19,8 @@ class OrderController extends Controller
      */
     public function payment(Request $request)
     {
-        $request->session()->forget('status');
+
+        $request->session()->forget('status_payment');
         $cart = session()->get('cart');
         $user = Auth::user();
         return view('drugstore.order.payment', compact('cart', 'user'));
@@ -33,7 +34,7 @@ class OrderController extends Controller
 
     public function payNowIndex(Request $request)
     {
-        $request->session()->forget('status');
+        $request->session()->forget('status_payment');
         $data = $request->data;
         $user = Auth::user();
         return view('drugstore.order.payNow', compact('user', 'data'));
@@ -153,7 +154,7 @@ class OrderController extends Controller
         $request->session()->forget('back.cvv');
         $request->session()->forget('cart');
 
-        $request->session()->put('status', true);
+        $request->session()->put('status_payment', true);
         $user = Auth::user();
         return view('drugstore.order.paymentComplete', compact('user'));
     }
@@ -207,7 +208,6 @@ class OrderController extends Controller
      */
     public function show(Request $request,$id)
     {
-        $request->session()->forget('status');
         $order = Orders::where('id', $id)->first();
 
         return view("drugstore.admin.order.oneOrder", compact('order'));
@@ -254,15 +254,16 @@ class OrderController extends Controller
         return redirect()->route('order.index')->with('success', $text);
     }
 
-    public function reason($id)
+    public function reason(Request $request,$id)
     {
+        $request->session()->put('status_orderFail', true);
         $order = Orders::find($id);
         return view('drugstore.user.orderHistory.cancel', compact('order'));
     }
 
     public function orderFailCreat(Request $request)
     {
-        $request->session()->put('status', true);
+        $request->session()->put('status_orderFail', true);
         Orders_fails::create([
             'cancel_reason' => $request->cancel_reason,
             'order_id' => $request->order_id,

@@ -11,20 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ContactController extends Controller
 {
     /* protected $user;
-    protected $test;
-
-    public function __construct(Request $request)
-    {
-        $this->user = $request->session()->get('user');
-        if ($request->session()->has('user')) {
-            $this->test = true;
-        } else {
-            $this->test = false;
-        }
-
-        View::share('user',$this->user);
-        View::share('test',$this->test);
-    } */
+    protected $test; */
 
     public function contact(Request $request)
     {
@@ -42,7 +29,7 @@ class ContactController extends Controller
             return redirect()->route('contact.index')->withInput()->withErrors([]);
         }
 
-        return view('drugstore.user.contact.confirm',compact('user'));
+        return view('drugstore.user.contact.confirm',compact('user','data'));
     }
 
     public function complete(ContactRequest $request)
@@ -61,7 +48,7 @@ class ContactController extends Controller
         }
         $contact->save();
 
-        return view('drugstore.user.contact.complete',compact('user','test'));
+        return view('drugstore.user.contact.complete',compact('user'));
     }
 
     public function index()
