@@ -50,27 +50,18 @@ foreach ($likes as $like) {
         @foreach ($products as $product)
         @if(!empty($typeProduct))
 
-        @if (Auth::user())
-        @if (Auth::user()->permission_id == 1)
+        @if (Auth::user() && Auth::user()->permission_id == 1)
         <a class=" product-item" href="{{ route('product.show',['product'=>$product->id,'type'=>$typeProduct ]) }}">
             @else
             <a class=" product-item" href="{{ route('product.showUser',['id'=>$product->id,'type'=>$typeProduct]) }}">
                 @endif
-                @else
-                <a class=" product-item" href="{{ route('product.showUser',['id'=>$product->id,'type'=>$typeProduct]) }}">
-                    @endif
-
         @else
 
-        @if (Auth::user())
-        @if (Auth::user()->permission_id == 1)
+        @if (Auth::user() && Auth::user()->permission_id == 1)
         <a class=" product-item" href="{{ route('product.show',['product'=>$product->id]) }}">
             @else
             <a class=" product-item" href="{{ route('product.showUser',['id'=>$product->id]) }}">
                 @endif
-                @else
-                <a class=" product-item" href="{{ route('product.showUser',['id'=>$product->id]) }}">
-                    @endif
 
                     @endif
                     <div class="product-item__img"

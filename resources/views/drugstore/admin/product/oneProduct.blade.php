@@ -104,6 +104,7 @@
             </div>
         </div>
         @if (Auth::user()->permission_id == 1)
+        @if (!empty($page))
         <div class="action">
             <div class="delete">
                 <form action="{{route('product.destroy',['product' => $product->id])}}" method="POST">
@@ -115,6 +116,7 @@
             </div>
             <div class="edit"><a href="{{route('product.edit', ['product' => $product->id])}}">編集</a></div>
         </div>
+        @endif
         @else
         <div class="action">
             <div class="delete">
