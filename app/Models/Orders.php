@@ -20,7 +20,8 @@ class Orders extends Model
         'email',
         'pay_by',
         'deli_time',
-        'total_money'
+        'deli_status',
+        'total_money',
         
     ];
 

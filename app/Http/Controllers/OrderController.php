@@ -225,9 +225,9 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CheckPaymentRequest $request/* , Orders $order */)
+    public function update(CheckPaymentRequest $request, $id)
     {
-        $order = Orders::where('id',$request->id)->first();
+        $order = Orders::where('id',$id)->first();
         $order->deli_status = $request->input('deli_status');
         $order->to_address = $request->input('address');
         $order->phone = $request->input('phone');
