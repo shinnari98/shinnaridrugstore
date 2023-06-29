@@ -7,6 +7,7 @@ use App\Models\Likes;
 use App\Models\Carts;
 use Illuminate\Http\Request;
 use App\Http\Requests\makeProductRequest;
+use App\Models\Categories;
 use App\Models\Star;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,23 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
+    public static string $categories;
+
+    public function typeProduct(Request $request,$id)
+    {
+        // dd($name);
+        $products = Products::where('category_id',$id)->paginate(10);
+        if (Auth::user()) {
+            $likes = Likes::UserLikes()->get();
+        } else {
+            $likes = $request->session()->get('likes', []);
+        }
+
+
+        $famous = Products::FamousProducts();
+        $typeProduct = Categories::where('id',$id)->first()->name;
+        return view('drugstore.product.type', compact('products','likes','famous','typeProduct'));
+    }
     /**
      * Display a listing of the resource.
      */
@@ -74,16 +92,24 @@ class ProductController extends Controller
      */
     public function show(Request $request, $id)
     {
+        $page = $request->page;      
+        // dd($request->page);  
         $product = Products::find($id);
         $user = Auth::user();
         $like = Likes::where('user_id', $user->id)->where('product_id', $id)->first();
         // $starnumber = Star::where('product_id',$id)->count('user_id');
         // dd($starnumber);
-        return view('drugstore.admin.product.oneProduct', compact('product', 'like'));
+        if (!empty($request->type)) {
+            $typeId = Categories::where('name',$request->type)->first()->id; 
+            return view('drugstore.admin.product.oneProduct', compact('page', 'product', 'like','typeId'));
+        } else {
+            return view('drugstore.admin.product.oneProduct', compact('page', 'product', 'like'));
+        }
     }
 
     public function showUser(Request $request, $id)
     {
+        
         $data = Products::find($id);
         $user = Auth::user();
         if ($user) {
@@ -91,7 +117,12 @@ class ProductController extends Controller
         } else {
             $like = '';
         }
-        return view('drugstore.product.view', compact('data', 'user', 'like'));
+        if (!empty($request->type)) {
+            $typeId = Categories::where('name',$request->type)->first()->id; 
+            return view('drugstore.product.view', compact('data', 'user', 'like','typeId'));
+        } else {
+            return view('drugstore.product.view', compact('data', 'user', 'like'));
+        }
     }
 
     /**

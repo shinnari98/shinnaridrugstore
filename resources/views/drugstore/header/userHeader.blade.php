@@ -157,22 +157,12 @@
     </div>
 
     <div class="sub-bar">
-        <div class="sub-bar__item">
-            <span class="sub-bar__title">薬</span>
+        @foreach ($categories as $item)
+        <a href="{{route('product.type',['id' => $item->id])}}" class="sub-bar__item">
+            <span class="sub-bar__title">{{$item->name}}</span>
             <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="sub-bar__item">
-            <span class="sub-bar__title">機能性食品</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="sub-bar__item">
-            <span class="sub-bar__title">医療機器</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="sub-bar__item">
-            <span class="sub-bar__title">個人用品</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
+        </a>
+        @endforeach
     </div>
 </header>
 @include('drugstore.item.ajaxJS')

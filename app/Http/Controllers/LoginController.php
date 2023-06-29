@@ -72,7 +72,6 @@ class LoginController extends Controller
         $recommends = Products::RecommendedProducts(5)->get();
         $famous = Products::FamousProducts();
         $user = Auth::user();
-        $likes = Likes::UserLikes()->get();
         $permission_id = $user->permission_id;
 
         if (session()->has('likes')) {
@@ -92,6 +91,7 @@ class LoginController extends Controller
             }
             
         }
+        $likes = Likes::UserLikes()->get();
         $request->session()->forget('likes');
 
         if ($permission_id == 1) {

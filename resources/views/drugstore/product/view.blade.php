@@ -23,10 +23,15 @@
 <div class="app-container">
     <div class="product-wrap">
         <div class="back">
-            @if (session()->has('user'))
+            @if (!empty($typeId))
+            <a href="{{route('product.type',['id' => $typeId])}}"><i class="fa-solid fa-arrow-left"></i></a>
+
+            @else
+            @if (Auth::user())
             <a href="{{route('homepage')}}"><i class="fa-solid fa-arrow-left"></i></a>
             @else
             <a href="{{route('index')}}"><i class="fa-solid fa-arrow-left"></i></a>
+            @endif
             @endif
         </div>
         <h1 class="product-title">商品詳細</h1>

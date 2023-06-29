@@ -58,7 +58,7 @@
                 <!-- <td>< ?=$player['del_flg'] ?></td> -->
                 <td class="view">
                     @if (Auth::user()->permission_id == 1)
-                    <a href="{{route('product.show', ['product' => $product->id])}}">詳細</a>
+                    <a href="{{route('product.show', ['product' => $product->id,'page'=>'admin'])}}">詳細</a>
                     @else
                     <a href="{{route('producer.productShow', ['id' => $product->id])}}">詳細</a>
                     @endif

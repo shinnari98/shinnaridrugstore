@@ -29,7 +29,7 @@ Route::get('/index', [HomeController::class, 'index'])->name('index');
 Route::get('/homepage', [LoginController::class, 'homepage'])->middleware('auth')->name('homepage');
 
 Route::get('/ajax-search-products', [HomeController::class, 'ajaxSearch'])->name('ajax-search-products');
-Route::post('/like', [ProductController::class, 'like'])->name('product.like')->middleware('auth');
+Route::post('/like', [ProductController::class, 'like'])->name('product.like')/* ->middleware('auth') */;
 Route::get('/addCart', [ProductController::class, 'addCart'])->name('product.cart');
 Route::get('/deleteCart', [ProductController::class, 'deleteCart'])->name('product.deleteCart');
 Route::get('/star', [ProductController::class, 'addStar'])->name('product.star')->middleware('auth');
@@ -48,10 +48,12 @@ Route::group(['prefix' => 'contact'], function () {
 
 Route::group(['prefix' => '/product'], function () {
     Route::get('/{id}', [ProductController::class, 'showUser'])->name('product.showUser');
+    Route::get('/type/{id}',[ProductController::class,'typeProduct'])->name('product.type');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkAdmin'], function () {
     Route::get('/', [AdminController::class, 'adminIndex'])->name('admin.index');
+    Route::get('/type/{id}',[ProductController::class,'typeProduct'])->name('admin.productType');
     Route::resources([
         'user' => UserController::class,
         'product' => ProductController::class,

@@ -718,13 +718,27 @@ margin: auto;
     margin: auto;
     width: 70%;
     align-items: center;
-    justify-content: space-between;
-    padding: 12px 10%;
+    /* justify-content: space-between; */
+}
+
+.sub-bar a {
     color: #fff;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    padding: 12px 1px;
+}
+
+.sub-bar a:hover {
+    color: #fff;
+    background-color: #f53e2db8;
+    border: 1px solid var(--border-color);
+    padding: 11px 0;
 }
 
 .sub-bar__item {
     font-size: 1.6rem;
+    position: relative;
 }
 
 

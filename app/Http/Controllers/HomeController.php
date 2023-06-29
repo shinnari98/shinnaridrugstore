@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public static string $categories;
+
     public function index(Request $request)
     {
         $products = Products::paginate(10);
-        $recommends = Products::orderBy('sold','desc')->orderBy('star','desc')->limit(5)->get();
+        $recommends = Products::RecommendedProducts(5)->get();
         $likes = $request->session()->get('likes', []);        
-        $famous = Products::where('star', '>=', 4)->orderBy('sold', 'desc')->take(10)->get('id')->pluck('id')->toArray();
+        $famous = Products::FamousProducts();
+        // dd($famous);        
         // $request->session()->forget('likes');
+        $categories = Categories::all(); 
         return view('drugstore.index', compact('products','recommends','likes','famous'));
     }
 

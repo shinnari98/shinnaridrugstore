@@ -15,8 +15,8 @@ if (session()->has('user') && $likes != null) {
     <div class="recommend-list">
 
         @foreach ($recommends as $recommend)
-        @if (session()->has('user'))
-        @if (session()->get('user')->permission_id == 1)
+        @if (Auth::user())
+        @if (Auth::user()->permission_id == 1)
         <a class=" product-item" href="{{ url('./admin/product/'.$recommend->id) }}">
             @else
             <a class=" product-item" href="{{ url('./product/'.$recommend->id) }}">
@@ -25,7 +25,7 @@ if (session()->has('user') && $likes != null) {
                 <a class=" product-item" href="{{ url('./product/'.$recommend->id) }}">
                     @endif
                     <div class="product-item__img"
-                        style="background-image: url('./img/product_img/{{$recommend->image}}');">
+                        style="background-image: url('{{asset('img/product_img/'.$recommend->image)}}');">
                     </div>
                     <h4 class="product-item__name">{{$recommend->name}}</h4>
                     @if ($recommend->sale_off > 0)
@@ -46,14 +46,14 @@ if (session()->has('user') && $likes != null) {
                     <div class="product-item__action">
                         <span class="product-item__like{{--  product-item__like--liked --}}">
                             @php
-                            if (session()->has('user') ) {
+                            if (Auth::user() ) {
                             $liked = in_array($recommend->id, $like_db);
                             }
                             $likes = session()->get('likes');
                             $productLiked = isset($likes[$recommend->id]) && $likes[$recommend->id] === true;
                             @endphp
 
-                            @if (session()->has('user'))
+                            @if (Auth::user())
                             @if ($productLiked || $liked)
                             <i class="product-item__like-icon-empty fa-regular fa-heart" style="display:none;"></i>
                             <i class="product-item__like-icon-fill fa-solid fa-heart"></i>

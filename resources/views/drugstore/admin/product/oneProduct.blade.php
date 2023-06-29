@@ -27,11 +27,22 @@
         <h1 class="product-title">商品詳細</h1>
         <div class="product-main">
             <div class="back">
-                @if (Auth::user()->permission_id == 1)
-                <a href="{{route('product.index')}}"><i class="fa-solid fa-arrow-left"></i></a>
+                @if (!empty($typeId))
+                    @if (Auth::user()->permission_id == 1)
+                    <a href="{{route('admin.productType',['id'=>$typeId])}}"><i class="fa-solid fa-arrow-left"></i></a>
+                    @endif
                 @else
-                <a href="{{route('producer.showProduct')}}"><i class="fa-solid fa-arrow-left"></i></a>
+                    @if (Auth::user()->permission_id == 1)
+                        @if (!empty($page))
+                        <a href="{{route('product.index')}}"><i class="fa-solid fa-arrow-left"></i></a>
+                        @else
+                        <a href="{{route('admin.index')}}"><i class="fa-solid fa-arrow-left"></i></a>
+                        @endif
+                    @else
+                    <a href="{{route('producer.showProduct')}}"><i class="fa-solid fa-arrow-left"></i></a>
+                    @endif
                 @endif
+
             </div>
             <div class="product-image">
                 <img src="{{ asset('img/product_img/' . $product->image) }}" alt="img">
