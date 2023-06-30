@@ -99,7 +99,8 @@
 
     <div class="sub-bar">
         @foreach ($categories as $item)
-        <a href="{{route('product.type',['id' => $item->id])}}" class="sub-bar__item">
+        <a href="{{route('product.type',['id' => $item->id])}}" class="sub-bar__item
+            @if (!empty($typeProduct) && $typeProduct == $item->name) sub-bar__in @endif">
             <span class="sub-bar__title">{{$item->name}}</span>
             <i class="fa-solid fa-chevron-down"></i>
         </a>
