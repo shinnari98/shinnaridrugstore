@@ -38,7 +38,11 @@
         <span class="all-price__number">{{session()->get('cart')->totalPrice}}円</span>
         <input hidden id="all-cart__number" type="number" value="{{session()->get('cart')->totalQuantity}}">
     </div>
+    @if (Auth::user())
     <div class="cart__payment"><a href="{{route('payment')}}">レジに進む</a></div>
+    @else
+    <div class="cart__payment"><a href="{{route('get.login')}}">レジに進む</a></div>
+    @endif
 </div>
 @else
 <h4 class="nav-cart__heading">カートに入れた商品はありません。</h4>

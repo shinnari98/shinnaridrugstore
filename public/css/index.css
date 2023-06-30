@@ -727,13 +727,19 @@ margin: auto;
     flex: 1;
     text-align: center;
     padding: 12px 1px;
+    white-space: nowrap;
 }
 
-.sub-bar a:hover {
+.sub-bar a:hover,
+.sub-bar__in {
     color: #fff;
     background-color: #f53e2db8;
     border: 1px solid var(--border-color);
     padding: 11px 0;
+}
+
+.sub-bar a.sub-bar__in:hover {
+    padding: 12px 1px;
 }
 
 .sub-bar__item {

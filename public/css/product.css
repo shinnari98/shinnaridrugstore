@@ -207,7 +207,8 @@
 
 .product-buy a {
     color: white;
-    padding: 7px 45px;
+    /* padding: 7px 45px; */
+    background-color: var(--primary-color);
 }
 
 .product-buy button {

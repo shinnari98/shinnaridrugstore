@@ -1,5 +1,5 @@
 @php
-    // dd($data);
+    // dd($typeProduct);
 @endphp
 @extends('drugstore.app')
 

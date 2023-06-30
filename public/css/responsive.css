@@ -239,7 +239,7 @@
     } */
 
     .sub-bar {
-        width: 96%;
+        width: 100%;
         padding: 4px 2%;
     }
 
@@ -259,6 +259,10 @@
 
     .select-input {
         display: flex;
+    } 
+    
+    .nav-group > * {
+        margin-left: -20px;
     }
 }
 
@@ -270,5 +274,4 @@
     .nav-bar {
         display: flex /* !important */;
     }
-
 }
