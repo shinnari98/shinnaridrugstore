@@ -27,6 +27,7 @@
         </div>
     @endif
     <div class="table-wrap">
+        <h2>商品管理</h2>
         <table>
             <tr>
                 <th>No</th>

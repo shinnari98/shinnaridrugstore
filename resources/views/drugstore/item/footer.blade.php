@@ -36,7 +36,7 @@
             <h4 class="footer__heading"></h4>
             <ul></ul class="footer-list">
         </div> --}}
-        <div class="footer-item">
+        <div class="footer-item footer-info">
             <h4 class="footer__heading">インフォメーション</h4>
             <ul class="footer-list">
                 <li class="footer__list-item">

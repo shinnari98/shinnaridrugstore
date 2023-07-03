@@ -27,6 +27,7 @@
         </div>
     @endif
     <div class="table-wrap">
+        <h2>注文書</h2>
         <table>
             <tr>
                 <th>No</th>
@@ -54,7 +55,13 @@
                 <td>{{$order->product->name}}</td>
                 <td style="text-align: center">{{$order->quantity}}</td>
                 <td>{{$order->total_money}}</td>
+
+                @if ($order->del_flg == 1)
+                <td>キャンセルでした</td>
+                @else
                 <td>{{$order->deli_status}}</td>
+                @endif
+
                 @if (Auth::user()->permission_id == 1)
                 <td>{{$order->del_flg}}</td>
                 <td class="view"><a href="{{route('order.show', ['order' => $order->id])}}">詳細</a></td>

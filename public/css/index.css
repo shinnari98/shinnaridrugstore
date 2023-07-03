@@ -1268,6 +1268,10 @@ li.page-item:not(.active):hover {
     border-top: 2px solid var(--primary-color);
 }
 
+.footer-item {
+    white-space: nowrap;
+}
+
 .footer__heading {
     font-size: 1.8rem;
     font-weight: 600;
@@ -1276,6 +1280,7 @@ li.page-item:not(.active):hover {
 
 .footer-list {
     font-size: 1.4rem;
+    padding-left: 0;
 }
 
 .footer-list a {
@@ -1285,11 +1290,20 @@ li.page-item:not(.active):hover {
 
 .footer__list-item {
     margin: 4px 0;
+}        
+
+.footer__list-item>* {
+    white-space: nowrap;     
 }
 
 .footer__list-item > span:first-child {
     display: inline-block;
-    width: 110px;
+    width: 10vw;
+}
+
+.footer-info li>span:nth-child(2) {
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .footer__bottom {

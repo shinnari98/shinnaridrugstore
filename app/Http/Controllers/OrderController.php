@@ -162,10 +162,18 @@ class OrderController extends Controller
     public function showMyOrder(Request $request)
     {
         $user = Auth::user();
-        $orderList = Orders::where('user_id', $user->id)->where('del_flg', 0)->paginate(5);
+        $orderList = Orders::where('user_id', $user->id)/* ->where('del_flg', 0) */->paginate(5);
         $stars = Star::where('user_id', $user->id)->get();
-        // dd($stars);
-        return view('drugstore.user.orderHistory.show', compact('orderList', 'user', 'stars'));
+
+        $order_fails = Orders_fails::whereIn('order_id', function ($query) use ($user) {
+            $query->select('id')->from('orders')->where('user_id', $user->id);
+        })->get()/* ->toArray() */;
+        $order_fails_id = Orders_fails::whereIn('order_id', function ($query) use ($user) {
+            $query->select('id')->from('orders')->where('user_id', $user->id);
+        })->pluck('cancel_reason','order_id')->toArray();
+        // dd($order_fails_id);
+        
+        return view('drugstore.user.orderHistory.show', compact('orderList', 'stars','order_fails'));
     }
 
     public function editMyOrder(Orders $order, $id)
@@ -209,8 +217,14 @@ class OrderController extends Controller
     public function show(Request $request,$id)
     {
         $order = Orders::where('id', $id)->first();
+        if ($order->del_flg == 1) {
+            $orderFail =Orders_fails::where('order_id',$id)->first();
+        } else {
+            $orderFail = "";
+        }
+        // dd($orderFail);
 
-        return view("drugstore.admin.order.oneOrder", compact('order'));
+        return view("drugstore.admin.order.oneOrder", compact('order','orderFail'));
     }
 
     /**
@@ -287,7 +301,7 @@ class OrderController extends Controller
     {
         $products = Products::where('producer_id',Auth::user()->id)->get();
         $productsId = $products->pluck('id');
-        $orders = Orders::whereIn('product_id', $productsId)->where('del_flg',0)->orderByDesc('created_at')->paginate(20);
+        $orders = Orders::whereIn('product_id', $productsId)/* ->where('del_flg',0) */->orderByDesc('created_at')->paginate(20);
         return view('drugstore.admin.order.allOrder', compact('orders'));
     }
 

@@ -23,6 +23,7 @@
     foreach ($stars as $star) {
     $starList[$star->product_id] = $star->star_number;
     }
+    // dd($order_fails);
     @endphp
 
     <div class="table-wrap">
@@ -52,9 +53,24 @@
                             </div>
                         </div>
                         <div class="myOrder-item__down">
+                            @php
+                                foreach($order_fails as $orderFail) {
+                                    // dd($orderFail->cancel_from_id);
+                                    if ($order->id == $orderFail->order_id && $orderFail->cancel_from_id == Auth::user()->id) {
+                                        $text = "キャンセルしました。";
+                                    } elseif ($order->id == $orderFail->order_id && $orderFail->cancel_from_id != Auth::user()->id) {
+                                        $text = "キャンセルされました。";
+                                    }
+                                }
+                            @endphp
+
                             <div class="item__down-info">
-                                <div class="item__down-status">
+                                <div class="item__down-status"> {{--$order->id--}}
+                                    @if ($order->del_flg == 1)
+                                    <p>{{$text}}</p>
+                                    @else
                                     <p>{{$order->deli_status}}です。</p>
+                                    @endif
                                     {{-- <p>2023/06/03に配達しました</p> --}}
                                 </div>
                                 <div class="item__down-product">
@@ -73,7 +89,7 @@
                                                         value="1"></div>
                                                 <a onclick="addCart(event,{{$order->product->id}})" href="">再度購入</a>
                                             </div>
-                                            @if ($order->deli_status !== '配達完了')
+                                            @if (($order->del_flg != 1) && $order->deli_status !== '配達完了' )
                                             <div class="down-product__cancel">
                                                 <a href="{{route('user.order.cancel',['id' => $order->id])}}">キャンセル</a>
                                             </div>
@@ -82,8 +98,8 @@
                                     </div>
                                 </div>
                             </div>
+                            @if ($order->del_flg != 1)
                             <div class="down-product__action">
-
                                 <div class="down-product__edit">
                                     {{-- show cho user nếu chưa ship và cho admin --}}
                                     @if ($order->deli_status !== '配達完了')
@@ -127,6 +143,8 @@
                                     @endif
                                 </div>
                             </div>
+                            @endif
+
                         </div>
                     </li>
                     @endforeach

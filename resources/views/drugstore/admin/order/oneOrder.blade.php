@@ -15,7 +15,7 @@
 @endif
 @endsection
 @php
-// dd($user);
+// dd(isset($orderFail->id));
 @endphp
 
 @section('main-content')
@@ -58,7 +58,15 @@
                         <div class="myOrder-item__down">
                             <div class="item__down-info">
                                 <div class="item__down-status">
+                                    @if (isset($orderFail->id))
+                                    @if ($orderFail->cancel_from_id == Auth::user()->id)
+                                    <p>キャンセルしました。</p>
+                                    @else
+                                    <p>キャンセルされました。</p>
+                                    @endif
+                                    @else
                                     <p>{{$order->deli_status}}です。</p>
+                                    @endif
                                     {{-- <p>2023/06/03に配達しました</p> --}}
                                 </div>
                                 <div class="item__down-product">
@@ -79,25 +87,34 @@
                                     @if (Auth::user()->permission_id == 1)
                                     <a href="{{route('order.edit',['order' => $order->id])}}">編集</a>
                                     @else
+                                    @if ($order->del_flg != 1)
                                     <a href="{{route('producer.orderEdit',['id' => $order->id])}}">編集</a>
+                                    @endif
                                     @endif
                                 </div>
                                 @if (Auth::user()->permission_id == 1)
                                 <div class="down-product__delete">
-                                    <form action="{{ route('order.destroy', ['order' => $order->id]) }}" method="POST" onsubmit="return confirm('No {{ $order->id }} を削除しますか？')">
+                                    <form action="{{ route('order.destroy', ['order' => $order->id]) }}" method="POST"
+                                        onsubmit="return confirm('No {{ $order->id }} を削除しますか？')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">削除</button>
                                     </form>
                                 </div>
                                 @endif
-                                @if ($order->deli_status != '配達完了')
+                                @if ($order->deli_status != '配達完了' && $order->del_flg != 1)
                                 <div class="down-product__canCel">
                                     <a href="{{route('producer.order.cancel',['id' => $order->id])}}">キャンセル</a>
                                 </div>
                                 @endif
                             </div>
                         </div>
+                        @if ($order->del_flg == 1)
+                        <div style="padding: 20px">
+                            <h3>キャンセル理由：</h3>
+                            <p style="font-size: 1.8rem">{{$orderFail->cancel_reason}}</p>
+                        </div>
+                        @endif
                     </li>
                 </ul>
             </div>
