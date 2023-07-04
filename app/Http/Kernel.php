@@ -67,5 +67,9 @@ class Kernel extends HttpKernel
         'checkAdmin'=>\App\Http\Middleware\checkAdmin::class,
         'checkProducer'=>\App\Http\Middleware\checkProducer::class,
         'checkUser'=>\App\Http\Middleware\checkUser::class,
+        'checkMyOrder'=>\App\Http\Middleware\checkMyOrder::class,
+        'checkProducerOrder'=>\App\Http\Middleware\checkProducerOrder::class,
+        'editProducerOrder'=>\App\Http\Middleware\editProducerOrder::class,
+        'checkProducerProduct'=>\App\Http\Middleware\checkProducerProduct::class,
     ];
 }

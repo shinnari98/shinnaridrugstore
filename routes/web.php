@@ -81,7 +81,7 @@ Route::group(['prefix' => '/user', 'middleware' => 'auth'], function () {
     Route::put('/profile/update', [UserController::class, 'updateMyProfile'])->name('user.updateProfile');
 
     Route::get('/order-history', [OrderController::class, 'showMyOrder'])->name('user.showOrder');
-    Route::get('/order-history/edit/{id}', [OrderController::class, 'editMyOrder'])->name('order.userEdit');
+    Route::get('/order-history/edit/{id}', [OrderController::class, 'editMyOrder'])->name('order.userEdit')->middleware('checkMyOrder');
     Route::put('/order-history/update', [OrderController::class, 'updateMyOrder'])->name('order.userUpadate');
 
     Route::get('/order/{id}/cancel', [OrderController::class, 'reason'])->name('user.order.cancel');
@@ -94,8 +94,8 @@ Route::group(['prefix' => '/producer', 'middleware' => 'checkProducer'], functio
     Route::put('/profile/update', [UserController::class, 'updateMyProfile'])->name('producer.updateProfile');
 
     Route::get('/order', [OrderController::class, 'showProducerAll'])->name('producer.order');
-    Route::get('/order/{id}', [OrderController::class, 'show'])->name('producer.orderShow');
-    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('producer.orderEdit');
+    Route::get('/order/{id}', [OrderController::class, 'show'])->name('producer.orderShow')->middleware('checkProducerOrder');
+    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('producer.orderEdit')->middleware('editProducerOrder');
     Route::put('/order/{id}/', [OrderController::class, 'update'])->name('producer.orderUpdate');
     Route::get('/order/{id}/cancel', [OrderController::class, 'reason'])->name('producer.order.cancel');
     Route::post('/order/fail', [OrderController::class, 'orderFailCreat'])->name('producer.orderFail');
@@ -103,8 +103,8 @@ Route::group(['prefix' => '/producer', 'middleware' => 'checkProducer'], functio
     Route::get('/product', [ProductController::class, 'showMyProduct'])->name('producer.showProduct');
     Route::get('/product/create', [ProductController::class, 'create'])->name('producer.productCreate');
     Route::post('/product', [ProductController::class, 'store'])->name('producer.productStore');
-    Route::get('/product/{id}', [ProductController::class, 'show'])->name('producer.productShow');
-    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('producer.productEdit');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('producer.productShow')->middleware('checkProducerProduct');
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('producer.productEdit')->middleware('checkProducerProduct');
     Route::put('product/{id}', [ProductController::class, 'update'])->name('producer.productUpdate');
-    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('producer.productDestroy');
+    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('producer.productDestroy')->middleware('checkProducerProduct');
 });

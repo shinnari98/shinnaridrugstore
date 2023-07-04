@@ -35,5 +35,21 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isUser', function ($user) {
             return $user->permission_id == 3;
         });
+
+        Gate::define('userHistory',function ($user,$order) {
+            return $user->id == $order->user_id && $order->deli_status !='配達完了';
+        });
+
+        Gate::define('producerOrder',function($user,$order) {
+            return $user->id == $order->product->producer_id;
+        });
+
+        Gate::define('producerOrderEdit',function($user,$order) {
+            return $user->id == $order->product->producer_id && $order->del_flg == 0 ;
+        });
+
+        Gate::define('producerProduct',function($user,$product) {
+            return $user->id == $product->producer_id;
+        });
     }
 }

@@ -179,7 +179,7 @@ class OrderController extends Controller
     public function editMyOrder(Orders $order, $id)
     {
         $order = Orders::where('id', $id)->first();
-        // dd($order);
+
         return view("drugstore.user.orderHistory.edit", compact('order'));
     }
 
@@ -222,7 +222,6 @@ class OrderController extends Controller
         } else {
             $orderFail = "";
         }
-        // dd($orderFail);
 
         return view("drugstore.admin.order.oneOrder", compact('order','orderFail'));
     }

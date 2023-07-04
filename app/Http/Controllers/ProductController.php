@@ -11,6 +11,7 @@ use App\Models\Categories;
 use App\Models\Star;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -99,6 +100,12 @@ class ProductController extends Controller
         $like = Likes::where('user_id', $user->id)->where('product_id', $id)->first();
         // $starnumber = Star::where('product_id',$id)->count('user_id');
         // dd($starnumber);
+        if (Auth::user()->permission_id == 2) {
+            // dd($product->producer_id);
+            if(Gate::denies('producerProduct',$product)) {
+                return redirect()->route('homepage');
+            }
+        }
         if (!empty($request->type)) {
             $typeId = Categories::where('name',$request->type)->first()->id; 
             return view('drugstore.admin.product.oneProduct', compact('page', 'product', 'like','typeId'));
@@ -132,6 +139,11 @@ class ProductController extends Controller
     {
         $product = Products::find($id);
         $user = Auth::user();
+        if (Auth::user()->permission_id == 2) {
+            if(Gate::denies('producerProduct',$product)) {
+                return redirect()->route('homepage');
+            }
+        }
         return view('drugstore.admin.product.editProduct', compact('product', 'user'));
     }
 
@@ -178,6 +190,11 @@ class ProductController extends Controller
     public function destroy(Request $request,string $id)
     {
         $product = Products::find($id);
+        if (Auth::user()->permission_id == 2) {
+            if(Gate::denies('producer-product',$product)) {
+                return redirect()->route('homepage');
+            }
+        }
         $text = 'Product id ' . $id . ' deleted successfully';
         $product->delete();
         if (Auth::user()->permission_id == 1) {

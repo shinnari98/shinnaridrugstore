@@ -149,6 +149,7 @@ foreach ($likes as $like) {
 
     </div>
     <div class="paging">
-        {{ $products->links() }}
+        {{ $products->appends(request()->all())->links()}}
+        {{-- {{ $products->links() }} --}}
     </div>
 </div>
