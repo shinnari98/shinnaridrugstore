@@ -49,7 +49,7 @@
                     <li class="info-list__item">
                         <div class="infor-list__key">価格:</div>
                         <div class="infor-list__value">
-                            <span>{{$order->total_money}}円</span>
+                            <span>{{number_format($order->total_money)}}円</span>
                         </div>
                     </li>
                     <li class="info-list__item">

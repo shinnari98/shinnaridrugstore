@@ -47,7 +47,12 @@
                                 </div>
                                 <div class="item__up-pay">
                                     <div class="item__up-title">合計</div>
-                                    <div class="item__up-content">{{$order->total_money}}円</div>
+
+                                    <div class="item__up-content">
+                                        <span
+                                            style="font-size: 1rem;color: var(--text-color);">(税込)
+                                        </span>{{number_format($order->total_money)}}円
+                                    </div>
                                 </div>
                             </div>
                             <div class="item__up-address">

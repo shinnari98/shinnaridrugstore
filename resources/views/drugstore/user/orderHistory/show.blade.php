@@ -44,7 +44,8 @@
                                 </div>
                                 <div class="item__up-pay">
                                     <div class="item__up-title">合計</div>
-                                    <div class="item__up-content">{{$order->total_money}}</div>
+                                    <div class="item__up-content">
+                                        <span style="color: var(--text-color);font-size:1.2rem">(税込)</span>{{number_format($order->total_money)}}円</div>
                                 </div>
                             </div>
                             <div class="item__up-address">
@@ -66,11 +67,11 @@
 
                             <div class="item__down-info">
                                 <div class="item__down-status"> {{--$order->id--}}
-                                    {{-- @if ($order->del_flg == 1)
+                                    @if ($order->del_flg == 1)
                                     <p>{{$text}}</p>
-                                    @else --}}
+                                    @else
                                     <p>{{$order->deli_status}}です。</p>
-                                    {{-- @endif --}}
+                                    @endif
                                     {{-- <p>2023/06/03に配達しました</p> --}}
                                 </div>
                                 <div class="item__down-product">

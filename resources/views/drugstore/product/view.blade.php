@@ -79,17 +79,19 @@
                     @if ($data->sale_off > 0)
                     <div class="product-price__old">
                         <span class="price__old-tittle">過去価格: </span>
-                        <span class="price__old-number">{{ $data->price }}円</span>
+                        <span class="price__old-number">{{ number_format($data->price) }}円</span>
                     </div>
                     <div class="product-price__sale">
                         <span class="price__sale-tittle">タイムセール: </span>
-                        <span class="price__sale-number">{{ round($data->price * (100 - $data->sale_off) / 100)
+                        <span style="color: var(--text-color);margin-right:5px;font-size:1.6rem">(税込)</span>
+                        <span class="price__sale-number">{{ number_format(round($data->price * (100 - $data->sale_off) / 100))
                             }}円</span>
                     </div>
                     @else
                     <div class="product-price__sale">
                         <span class="price__sale-tittle">価格: </span>
-                        <span class="price__sale-number">{{ $data->price }}円</span>
+                        <span style="color: var(--text-color);margin-right:5px;font-size:1.6rem">(税込)</span>
+                        <span class="price__sale-number">{{ number_format($data->price) }}円</span>
                     </div>
                     @endif
                 </div>
