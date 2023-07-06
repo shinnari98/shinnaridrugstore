@@ -74,7 +74,11 @@
                                     <div class="down-product__buy-again">
                                         <div class="product-quantity__number hidden"><input type="hidden" value="1">
                                         </div>
+                                        @if (Auth::user()->permission_id == 2)
                                         <a href="{{route('producer.orderShow',['id' => $order->id])}}">戻る</a>
+                                        @else 
+                                        <a href="{{route('user.showOrder')}}">戻る</a>
+                                        @endif
                                     </div>
                                     {{-- if　$order->deli_status　== 準備中 --}}
                                     @if ($order->deli_status !== '完了')
