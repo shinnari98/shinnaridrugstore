@@ -16,7 +16,7 @@
             <h5 class="cart__list-name"><a
                     href="{{ url('./product/' .$item['productInfo']->id)}}">{{$item['productInfo']->name}}</a></h5>
             <ul class="cart__list-priceWrap">
-                <li class="cart__list-price">{{ $item['productInfo']->price*(100-$item['productInfo']->sale_off)/100 }}円
+                <li class="cart__list-price">{{ number_format($item['productInfo']->price*(100-$item['productInfo']->sale_off)/100) }}円
                 </li>
                 <li class="cart__list-multy">x</li>
                 <li class="cart__list-quantity">
@@ -35,7 +35,7 @@
 <div class="nav-cart-footer">
     <div class="cart__all-price">
         <span class="all-price__text">ご請求額: </span>
-        <span class="all-price__number">{{session()->get('cart')->totalPrice}}円</span>
+        <span class="all-price__number">{{number_format(session()->get('cart')->totalPrice)}}円</span>
         <input hidden id="all-cart__number" type="number" value="{{session()->get('cart')->totalQuantity}}">
     </div>
     @if (Auth::user())

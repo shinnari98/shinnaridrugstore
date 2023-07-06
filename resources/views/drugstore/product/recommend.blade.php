@@ -29,13 +29,13 @@ $like_db = [];
                 <div class="product-item__price">
                     <div class="item__price-old">{{number_format($recommend->price)}}</div>
                     <div class="item__price-current">
-                        <span style="font-size: 1rem;color: var(--text-color);">(税込)</span>
+                        <span style="font-size: 1rem;color: var(--text-color);">(税抜)</span>
                         {{number_format(round($recommend->price*(100-$recommend->sale_off)/100))}}円
                     </div>
                 </div>
                 @else
                 <div class="product-item__price" style="justify-content: center">
-                    <p style="color: var(--text-color);margin-right:5px;">(税込)</p>
+                    <p style="color: var(--text-color);margin-right:5px;">(税抜)</p>
                     <div class="item__price-current"> {{number_format($recommend->price)}}円</div>
                 </div>
                 @endif

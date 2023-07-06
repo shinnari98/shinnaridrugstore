@@ -88,13 +88,13 @@
                     </div>
                     <div class="product-price__sale">
                         <span class="price__sale-tittle">タイムセール: </span>
-                        <span style="font-size: 1rem;color: var(--text-color);">(税込)</span>
+                        <span style="font-size: 1rem;color: var(--text-color);">(税抜)</span>
                         <span class="price__sale-number">{{ number_format(round($product->price * (100 - $product->sale_off) / 100))  }}円</span>
                     </div>
                     @else
                     <div class="product-price__sale">
                         <span class="price__sale-tittle">価格: </span>
-                        <span style="font-size: 1rem;color: var(--text-color);">(税込)</span>
+                        <span style="font-size: 1rem;color: var(--text-color);">(税抜)</span>
                         <span class="price__sale-number">{{ number_format($product->price) }}円</span>
                     </div>
                     @endif

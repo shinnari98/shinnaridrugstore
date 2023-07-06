@@ -36,9 +36,9 @@
                 <th>数量</th>
                 <th>価格</th>
                 <th>配達状況</th>
-                @if (Auth::user()->permission_id == 1)
+                {{-- @if (Auth::user()->permission_id == 1)
                 <th>キャンセル</th>
-                @endif
+                @endif --}}
                 <th></th>
             </tr>
             @foreach ($orders as $order)
@@ -63,7 +63,7 @@
                 @endif
 
                 @if (Auth::user()->permission_id == 1)
-                <td>{{$order->del_flg}}</td>
+                {{-- <td>{{$order->del_flg}}</td> --}}
                 <td class="view"><a href="{{route('order.show', ['order' => $order->id])}}">詳細</a></td>
                 @else
                 <td class="view"><a href="{{route('producer.orderShow', ['id' => $order->id])}}">詳細</a></td>

@@ -73,13 +73,13 @@ foreach ($likes as $like) {
                     <div class="product-item__price">
                         <div class="item__price-old">{{number_format($product->price)}}</div>
                         <div class="item__price-current">
-                            <span style="font-size: 1rem;color: var(--text-color);">(税込)</span>
+                            <span style="font-size: 1rem;color: var(--text-color);">(税抜)</span>
                             {{number_format(round($product->price*(100-$product->sale_off)/100))}}円
                         </div>
                     </div>
                     @else
                     <div class="product-item__price" style="justify-content: center">
-                        <p style="color: var(--text-color);margin-right:5px;">(税込)</p>
+                        <p style="color: var(--text-color);margin-right:5px;">(税抜)</p>
                         <div class="item__price-current"> {{number_format($product->price)}}円</div>
                     </div>
                     @endif
